@@ -1,0 +1,103 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.logo-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5px;
+    margin-bottom: 0.5px;
+}
+.logo-top img {
+    width: auto;
+    height: 495px;
+}
+
+header.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    margin-bottom: 8px;
+}
+
+header.navbar nav ul {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header.navbar nav ul li a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 10px 22px;
+    border-radius: 20px;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    background: rgba(255,255,255,0.05);
+    box-shadow: 0 2px 8px rgba(255,255,255,0.05);
+}
+header.navbar nav ul li a:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 4px 16px #fff8;
+}
+
+.resume-button {
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+    padding: 10px 28px;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(255,255,255,0.05);
+    transition: background 0.3s, color 0.2s, transform 0.2s;
+    margin-left: 24px;
+}
+.resume-button:hover {
+    background: linear-gradient(90deg, #fff 0%, #f8f8f8 100%);
+    color: #111;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 16px #fff8;
+}
+
+main.content {
+    max-width: 1100px;
+    margin: 0px auto 0 auto;
+    padding: 32px 16px;
+    text-align: center;
+}
+
+main.content h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+main.content p {
+    color: #e8e8f0;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    text-align: justify;
+    max-width: 800px;      /* Set a max width for paragraphs */
+    margin-left: auto;     /* Center the paragraph */
+    margin-right: auto;    /* Center the paragraph */
+}
+
+.centered-info {
+    text-align: center;
+}
+

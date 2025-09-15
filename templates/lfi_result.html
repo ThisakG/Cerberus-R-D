@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Secret - Cerberus Research</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboardStyle.css') }}">
+     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+</head>
+<body>
+    <div class="logo-top">
+        <img src="{{ url_for('static', filename='banner.png') }}" alt="logo" class="favlogo" />
+    </div>
+        <header class="navbar">
+        <nav>
+            <ul>
+                <li><a href="/dashboard">HOME</a></li>
+                <li><a href="/profile?user_id={{ session['username'] }}">PROFILE</a></li>
+                <li><a href="/download?file=report.pdf">REPORTS</a></li>
+                <li><a href="/view?log=today.log">LOGS</a></li>
+                <li><a href="/search">SEARCH</a></li>
+            </ul>
+        </nav>
+        <div>
+            <a href="/logout" class="resume-button">LOGOUT</a>
+        </div>
+    </header>
+    <main class="content">
+        <h1>Submit the Decoded Secret</h1>
+        <form method="post" action="/submit_flag">
+            <input type="text" name="secret" placeholder="Enter the decoded secret" style="padding:8px; border-radius:6px; border:1px solid #222; width:260px;">
+            <button type="submit" class="resume-button">Submit</button>
+        </form>
+        {% if success %}
+           <div class="card" style="background:#181818; color:#fff; margin-top:0;">
+                {% if flag %}
+                <div style="background:#444; color:#111; padding:14px 18px; border-left:5px solid #39FF14; margin-top:12px; border-radius:7px; font-size:1.1rem; font-family:monospace;">
+                  <strong style="color:#39FF14;">FLAG:</strong> <code style="color:#39FF14;">{{ flag }}</code>
+                </div>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="error">{{ message }}</div>
+        {% endif %}
+        <br><br><br>
+        <a href="/view" class="resume-button">&larr; Back to Log Viewer</a>
+    </main>
+</body>
+</html>

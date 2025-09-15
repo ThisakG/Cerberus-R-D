@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search - Cerberus Research</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboardStyle.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+</head>
+<body>
+    <div class="logo-top">
+        <img src="{{ url_for('static', filename='banner.png') }}" alt="logo" class="favlogo" />
+    </div>
+        <header class="navbar">
+        <nav>
+            <ul>
+                <li><a href="/dashboard">HOME</a></li>
+                <li><a href="/profile?user_id={{ session['username'] }}">PROFILE</a></li>
+                <li><a href="/download?file=report.pdf">REPORTS</a></li>
+                <li><a href="/view?log=today.log">LOGS</a></li>
+                <li><a href="/search">SEARCH</a></li>
+            </ul>
+        </nav>
+        <div>
+            <a href="/logout" class="resume-button">LOGOUT</a>
+        </div>
+    </header>
+    <main class="content">
+        <h1>Search</h1>
+        <form method="get" action="/search" style="margin-bottom: 24px;">
+            <input type="text" name="query" placeholder="Enter search term" value="{{ request.args.get('query', '') }}" style="padding:8px; border-radius:6px; border:1px solid #222; width:260px;">
+            <button type="submit" class="resume-button">Search</button>
+        </form>
+        {% if flag %}
+        <div style="background:#444; color:#111; padding:14px 18px; border-left:5px solid #39FF14; margin-top:12px; border-radius:7px; font-size:1.1rem; font-family:monospace;">
+        <strong style="color:#39FF14;">FLAG:</strong> <code style="color:#39FF14;">{{ flag }}</code>
+        </div>
+{% endif %}
+    </main>
+
+        <div id="dog-lottie" style="
+        position: fixed;
+        bottom: 24px;
+        width: 150px;
+        height: 70px;
+        z-index: 9999;
+        pointer-events: none;
+        display: none;
+    "></div>
+    <script>
+    lottie.loadAnimation({
+        container: document.getElementById('dog-lottie'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: "{{ url_for('static', filename='dog2.json') }}"
+    });
+    </script>
+    <script src="{{ url_for('static', filename='doggo.js') }}"></script>
+</body>
+</html>

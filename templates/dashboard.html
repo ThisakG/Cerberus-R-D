@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cerberus Research</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboardStyle.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    
+</head>
+<body>
+        <div class="logo-top">
+        <img src="{{ url_for('static', filename='banner.png') }}" alt="logo" class="favlogo" />
+    </div>
+    <header class="navbar">
+        <nav>
+            <ul>
+                <li><a href="/dashboard">HOME</a></li>
+                <li><a href="/profile?user_id={{ session['username'] }}">PROFILE</a></li>
+                <li><a href="/download?file=report.pdf">REPORTS</a></li>
+                <li><a href="/view?log=today.log">LOGS</a></li>
+                <li><a href="/search">SEARCH</a></li>
+            </ul>
+        </nav>
+        <div>
+            <a href="/logout" class="resume-button">LOGOUT</a>
+        </div>
+    </header>
+    <main class="content">
+
+        <h1>CERBERUS RESEARCH & DEVELOPMENT</h1><br>
+        <p>At Cerberus Research Labs, we pride ourselves on pushing the boundaries of cybersecurity innovation. 
+            Our state-of-the-art research designed to support next-generation testing, 
+            secure data exchange, and advanced threat simulations. 
+            As part of our team, analysts and penetration testers are tasked with uncovering vulnerabilities 
+            before adversaries do.</p>
+            
+        <p>Cerberus stands as the three-headed guardian at the gates of modern digital infrastructure; 
+            vigilant, relentless, and unyielding in the face of cyber threats. 
+            From secure communications to classified research, our mission is clear: defend what others cannot.</p>
+        
+        <br>
+
+        <center><p><b>Beyond the Firewall</b></p></center>
+        
+        <p>At Cerberus, we don’t just patch holes—we stare into the void where malware lurks, and sometimes it blinks first. 
+            Our systems are so secure that even ghosts of hackers past have been known to retire early.</p>  
+
+        <center><p><b>Innovation with Bite</b></p></center>
+           
+        <p>Every line of code we write, every exploit we simulate, 
+            and every red-team exercise is guided by the three heads of Cerberus:</p>
+
+        <p>The Analyst Head: Sees every log, every packet, and every suspicious blinking LED.</p>
+
+        <p>The Hacker Head: Thinks like an adversary so you don’t have to… unless you want to, then that’s fine too.</p>
+
+        <p>The Coffee Head: Keeps the other two functioning at peak mythical efficiency.</p>
+
+        <br>
+
+        <center><p><b>Myth Meets Machine</b></p></center>
+
+        <p>Why settle for ordinary cybersecurity when you can have a three-headed guardian? 
+            Cerberus R&D fuses classical mythology with modern tech: AI algorithms that bark, 
+            IDS systems that snarl, and firewalls that actually breathe fire (metaphorically… mostly).</p>
+
+        <br>
+
+        <center><p><b>Classified Fun</b></p></center>
+
+        <p>Sometimes our experiments get a little… unusual. 
+            We’ve tested everything from encrypted teleportation packets to malware that politely asks for permission 
+            before running. Rumor has it, a few interns are still hiding in the lab’s digital labyrinth.</p>
+
+        <br>
+
+        <center><p><b>Join the Hunt</b></p></center>
+
+        <p>At Cerberus, we don’t just defend the gates—we redesign them, trap intruders in infinite loops, 
+            and occasionally leave a digital bone or two for curious adventurers. 
+            Fancy joining the hunt? Make sure your armor is patched, your passwords are strong, 
+            and your sense of humor is as sharp as our intrusion detection system.</p>
+
+            <br>
+            <br>
+            <br>
+
+    <div id="dog-lottie" style="
+        position: fixed;
+        bottom: 24px;
+        width: 150px;
+        height: 70px;
+        z-index: 9999;
+        pointer-events: none;
+        display: none;
+    "></div>
+    <script>
+    lottie.loadAnimation({
+        container: document.getElementById('dog-lottie'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: "{{ url_for('static', filename='dog2.json') }}"
+    });
+    </script>
+    <script src="{{ url_for('static', filename='doggo.js') }}"></script>
+</body>
+</html>

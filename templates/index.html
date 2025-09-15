@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cerberus Research</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+</head>
+<body>
+    <div class="center-container">
+    <header>
+        <img src="{{ url_for('static', filename='cerb3.png') }}" alt="Logo" width="350px" height="auto">
+        <p><b>AUTHORIZED PERSONNEL ONLY</b></p>
+        <br>
+    </header>
+<main>
+    <form method="POST" action="/login">
+        <label><b>Username: </b><input type="text" name="username"></label><br>
+        <label><b>Password: </b><input type="password" name="password"></label><br>
+        <button type="submit">Login</button>
+    </form>
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+</main>
+        <br>
+    </main>
+    </div>
+</body>
+</html>

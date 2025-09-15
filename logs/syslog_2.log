@@ -1,0 +1,12 @@
+Sep 15 12:15:23 localhost systemd[1]: Started Session 23 of user sam.
+Sep 15 12:15:25 localhost sshd[4567]: Accepted password for admin from 192.168.1.103 port 55555 ssh2
+Sep 15 12:15:33 localhost kernel: [12400.987654] eth0: link down
+Sep 15 12:16:02 localhost CRON[2347]: (root) CMD (   cd / && run-parts --report /etc/cron.daily)
+Sep 15 12:16:12 localhost systemd[1]: Reloading system manager configuration...
+Sep 15 12:16:25 localhost sudo: admin : TTY=pts/1 ; PWD=/home/admin ; USER=root ; COMMAND=/usr/bin/apt update
+Sep 15 12:17:33 localhost kernel: [12405.456789] usb 2-1: new high-speed USB device number 3 using xhci_hcd
+Sep 15 12:18:02 localhost systemd[1]: Started Daily apt upgrade activities.
+Sep 15 12:18:45 localhost sshd[4567]: Failed password for root from 192.168.1.104 port 54323 ssh2
+Sep 15 12:19:01 localhost CRON[2348]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 15 12:19:23 localhost systemd[1]: Stopping Daily apt download activities...
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Download Files - Cerberus Research</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboardStyle.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+</head>
+<body>
+    <div class="logo-top">
+        <img src="{{ url_for('static', filename='banner.png') }}" alt="logo" class="favlogo" />
+    </div>
+    <header class="navbar">
+        <nav>
+            <ul>
+                <li><a href="/dashboard">HOME</a></li>
+                <li><a href="/profile?user_id={{ session['username'] }}">PROFILE</a></li>
+                <li><a href="/download?file=report.pdf">REPORTS</a></li>
+                <li><a href="/view?log=today.log">LOGS</a></li>
+                <li><a href="/search">SEARCH</a></li>
+            </ul>
+        </nav>
+        <a href="/logout" class="resume-button">LOGOUT</a>
+    </header>
+    <main class="content">
+        <h1>Report Viewer</h1>
+        
+        <form method="get" action="/download" style="margin-bottom: 24px;">
+            <!-- use 'file' as the param name -->
+            <input type="text" name="file" placeholder="Enter filename (e.g. report1.txt)" value="{{ file or '' }}" style="padding:8px; border-radius:6px; border:1px solid #222; width:260px;">
+            <button type="submit" class="resume-button">View File</button>
+        </form>
+
+        <!--<p style="color:#9aa7b2;">Hint: try checking some reports. If you can't find what you need, the file may be hidden in another folder — traversal might help.</p>-->
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+        {% if content %}
+            <div class="card" style="margin: 0 auto; max-width: 600px; background: #181818;">
+                <h2 style="color:#fff;">{{ file }}</h2>
+                <pre style="text-align:left; color:#fff; background:#222; padding:16px; border-radius:8px; overflow-x:auto;">{{ content }}</pre>
+                <!--<a href="/download?file={{ file }}" download style="display:inline-block; margin-top:12px; color:#000; background:#39FF14; padding:8px 18px; border-radius:20px; text-decoration:none; font-weight:bold;">Download Raw</a>-->
+            </div>
+        {% endif %}
+        {% if show_submit %}
+            <form method="post" action="/submit_secret" style="margin-top: 32px;">
+                <label for="decoded_secret" style="color:#fff;">Decoded Secret:</label><br><br>
+                <input type="text" name="decoded_secret" id="decoded_secret" style="padding:8px; border-radius:6px; border:1px solid #222; width:260px;">
+                <button type="submit" class="resume-button">Submit Secret</button>
+            </form><br>
+            <!--{% if flag_message is not none %}
+                {% if flag_success %}
+                    <div style="background:#444; color:#111; padding:14px 18px; border-left:5px solid #39FF14; margin-top:18px; border-radius:7px; font-size:1.1rem; font-family:monospace;">
+                        <strong style="color:#39FF14;">FLAG:</strong> <code style="color:#39FF14;">{{ flag_message }}</code>
+                    </div>
+                {% else %}
+                    <div class="error" style="margin-top:18px;">{{ flag_message }}</div>
+                {% endif %}
+            {% endif %}-->
+        {% endif %}
+        <br>
+    </main>
+
+        <div id="dog-lottie" style="
+        position: fixed;
+        bottom: 24px;
+        width: 150px;
+        height: 70px;
+        z-index: 9999;
+        pointer-events: none;
+        display: none;
+    "></div>
+    <script>
+    lottie.loadAnimation({
+        container: document.getElementById('dog-lottie'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: "{{ url_for('static', filename='dog2.json') }}"
+    });
+    </script>
+    <script src="{{ url_for('static', filename='doggo.js') }}"></script>
+</body>
+</html>
