@@ -6,6 +6,10 @@ from html import escape
 app = Flask(__name__)
 app.secret_key = "cerberus_lab_secret"
 
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Use Azure's port if provided
+    app.run(host="0.0.0.0", port=port, debug=False)
+
 
 # Simple user database-----------------------------------------------------------------------------------------------------
 users = {
@@ -275,6 +279,7 @@ def change_email():
     
     # Render the change email page with current email, flag (if any), and message
     return render_template("changeEmail.html", flag=flag, message=message, email=users[session['username']]['email'])
+
 
 
 
