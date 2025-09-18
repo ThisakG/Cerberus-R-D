@@ -267,18 +267,20 @@ def change_email():
     # Ensure user is logged in, if not redirect to login
     if 'username' not in session:
         return redirect(url_for('login'))
-    # Process form submission
+    username = session['username']
     if request.method == "POST":
         new_email = request.form.get("email", "")
-
-        # Update the user's email in the users dictionary
-        users[session['username']]['email'] = new_email
-
-        # Show flag for any email change via POST
+        users[username]['email'] = new_email
         flag = FLAGS.get("csrf", "FLAG_NOT_SET")
-    
-    # Render the change email page with current email, flag (if any), and message
-    return render_template("changeEmail.html", flag=flag, message=message, email=users[session['username']]['email'])
+        
+        # Reset email to default after showing the flag
+        if username == "user":
+            users[username]['email'] = "user@cerberus.lab"
+        elif username == "admin":
+            users[username]['email'] = "admin@cerberus.lab"
+            
+    return render_template("changeEmail.html", flag=flag, message=message, email=users[username]['email'])
+
 
 
 
