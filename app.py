@@ -197,19 +197,26 @@ def view_lfi():
     content = None
     error = None
 
+
     if log:
-        try:
-            # Only allow files inside the logs folder for safety
-            file_path = f"logs/{log}"
-            with open(file_path, "r") as f:
-                file_content = f.read()
-
-            # Dangerous: render template so Jinja code can execute (simulated LFI) - not described in challenge !!!
-            content = render_template_string(file_content)
-
-        # Handle file not found and other errors
-        except Exception:
-            error = "Cannot open or render file"
+        # Block path traversal attempts
+        if any(x in log for x in ['..', '/', '\\']):
+            error = "Invalid file name."
+        else:
+            import os
+            logs_dir = os.path.join(os.getcwd(), 'logs')
+            allowed_files = os.listdir(logs_dir)
+            if log not in allowed_files:
+                error = "File not found."
+            else:
+                try:
+                    file_path = os.path.join(logs_dir, log)
+                    with open(file_path, "r") as f:
+                        file_content = f.read()
+                    # Dangerous: render template so Jinja code can execute (simulated LFI)
+                    content = render_template_string(file_content)
+                except Exception:
+                    error = "Cannot open or render file"
 
     # Render the view page with file content or error message
     return render_template("view.html", content=content, error=error)
@@ -239,6 +246,7 @@ def submit_flag():
 
     # Render the result page with success status, flag, and message
     return render_template("lfi_result.html", success=success, flag=flag, message=message)
+
 
 
 
@@ -280,6 +288,7 @@ def change_email():
             users[username]['email'] = "admin@cerberus.lab"
             
     return render_template("changeEmail.html", flag=flag, message=message, email=users[username]['email'])
+
 
 
 
